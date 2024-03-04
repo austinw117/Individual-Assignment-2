@@ -253,4 +253,26 @@ function endGame(status, result){
     text = "Draw."
     status.innerHTML = result;
     draw = true;
+
+    // Prevents further action from the player.
+    removeListeners();
+    // Shows button to restart the game.
+    let restartGame = document.createElement("button");
+    restartGame.textContent = "Restart Game.";
+    restartGame.classList.add("restartButton");
+    restartGame.addEventListener('click', function() {
+        location.reload();
+    });
+    document.getElementById("restartGame").append(restartGame);
+    console.log("Game Reloaded.")
+}
+
+function removeListeners(){
+    console.log("Player Action Removed.")
+    const divs = document.querySelectorAll('div');
+    divs.forEach(div => {
+        div.addEventListener('click', function() {
+            div.classList.add("disableClick");
+        });
+    });
 }
